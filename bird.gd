@@ -4,6 +4,7 @@ extends Node2D
 var hitPipe = false
 @onready var player = $AnimationPlayer
 signal BirdHitPipe
+var Points = 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and hitPipe == false:
@@ -15,6 +16,10 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("Au")
-	hitPipe = true
-	BirdHitPipe.emit()
+	print(area.name)
+	if area.name == "Points":
+		Points +=1
+	else: 
+		hitPipe = true
+		BirdHitPipe.emit()
+		print(Points)
