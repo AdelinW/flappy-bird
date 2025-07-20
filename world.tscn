@@ -44,7 +44,7 @@ position = Vector2(-1.5, 6)
 shape = SubResource("RectangleShape2D_fj7yv")
 
 [node name="Pipe" type="Node2D" parent="."]
-position = Vector2(1000, 300)
+position = Vector2(743, 569)
 script = ExtResource("3_tlwt5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pipe"]
@@ -58,6 +58,24 @@ shape = SubResource("RectangleShape2D_tlwt5")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Pipe"]
 
+[node name="Pipe2" type="Node2D" parent="."]
+position = Vector2(1021, 81)
+rotation = 3.14159
+script = ExtResource("3_tlwt5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pipe2"]
+texture = SubResource("AtlasTexture_fj7yv")
+
+[node name="Area2D" type="Area2D" parent="Pipe2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe2/Area2D"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Pipe2"]
+
 [connection signal="area_entered" from="bird/Area2D" to="bird" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Pipe/Area2D" to="Pipe" method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="Pipe/VisibleOnScreenNotifier2D" to="Pipe" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Pipe2/Area2D" to="Pipe2" method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="Pipe2/VisibleOnScreenNotifier2D" to="Pipe2" method="_on_visible_on_screen_notifier_2d_screen_exited"]
