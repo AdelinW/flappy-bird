@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl3vrcxbbkljl"]
+[gd_scene load_steps=7 format=3 uid="uid://cl3vrcxbbkljl"]
 
 [ext_resource type="Script" uid="uid://dp56e3520iohi" path="res://bird.gd" id="1_fj7yv"]
 [ext_resource type="Texture2D" uid="uid://jcy0pog7fenc" path="res://assets/latest.png" id="2_fj7yv"]
@@ -6,6 +6,16 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlwt5"]
 atlas = ExtResource("2_fj7yv")
 region = Rect2(112, 376, 24, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
+size = Vector2(43, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj7yv"]
+atlas = ExtResource("2_fj7yv")
+region = Rect2(84, 320, 28, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
+size = Vector2(26, 160)
 
 [node name="world" type="Node2D"]
 
@@ -16,3 +26,23 @@ script = ExtResource("1_fj7yv")
 [node name="Sprite2D" type="Sprite2D" parent="bird"]
 scale = Vector2(2.5, 2.5)
 texture = SubResource("AtlasTexture_tlwt5")
+
+[node name="Area2D" type="Area2D" parent="bird"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bird/Area2D"]
+position = Vector2(-1.5, 6)
+shape = SubResource("RectangleShape2D_fj7yv")
+
+[node name="Pipe" type="Node2D" parent="."]
+position = Vector2(250, 300)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pipe"]
+texture = SubResource("AtlasTexture_fj7yv")
+
+[node name="Area2D" type="Area2D" parent="Pipe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe/Area2D"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[connection signal="area_entered" from="bird/Area2D" to="bird" method="_on_area_2d_area_entered"]
