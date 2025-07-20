@@ -3,7 +3,7 @@ extends Node2D
 
 var hitPipe = false
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") and hitPipe == false:
 		print("space")
 		position.y -= 175
 	
