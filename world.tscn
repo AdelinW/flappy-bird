@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl3vrcxbbkljl"]
+[gd_scene load_steps=12 format=3 uid="uid://cl3vrcxbbkljl"]
 
 [ext_resource type="Script" uid="uid://dp56e3520iohi" path="res://bird.gd" id="1_fj7yv"]
 [ext_resource type="Texture2D" uid="uid://jcy0pog7fenc" path="res://assets/latest.png" id="2_fj7yv"]
@@ -10,10 +10,48 @@ region = Rect2(147, 152, 140, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlwt5"]
 atlas = ExtResource("2_fj7yv")
-region = Rect2(112, 376, 24, 16)
+region = Rect2(112, 368, 24, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(43, 28)
+
+[sub_resource type="Animation" id="Animation_tlwt5"]
+resource_name = "BirdFlap"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_aqk2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_036b0"]
+_data = {
+&"BirdFlap": SubResource("Animation_tlwt5"),
+&"RESET": SubResource("Animation_aqk2v")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fj7yv"]
 atlas = ExtResource("2_fj7yv")
@@ -36,12 +74,18 @@ script = ExtResource("1_fj7yv")
 [node name="Sprite2D" type="Sprite2D" parent="bird"]
 scale = Vector2(2.5, 2.5)
 texture = SubResource("AtlasTexture_tlwt5")
+vframes = 3
 
 [node name="Area2D" type="Area2D" parent="bird"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bird/Area2D"]
 position = Vector2(-1.5, 6)
 shape = SubResource("RectangleShape2D_fj7yv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="bird"]
+libraries = {
+&"": SubResource("AnimationLibrary_036b0")
+}
 
 [node name="Pipe" type="Node2D" parent="."]
 position = Vector2(1302, 570)

@@ -2,11 +2,12 @@ extends Node2D
 
 
 var hitPipe = false
+@onready var player = $AnimationPlayer
 signal BirdHitPipe
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and hitPipe == false:
-		print("space")
+		player.play("BirdFlap")
 		position.y -= 175
 	
 func _process(delta: float) -> void:
