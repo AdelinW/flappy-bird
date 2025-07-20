@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl3vrcxbbkljl"]
+[gd_scene load_steps=9 format=3 uid="uid://cl3vrcxbbkljl"]
 
 [ext_resource type="Script" uid="uid://dp56e3520iohi" path="res://bird.gd" id="1_fj7yv"]
 [ext_resource type="Texture2D" uid="uid://jcy0pog7fenc" path="res://assets/latest.png" id="2_fj7yv"]
 [ext_resource type="Script" uid="uid://duhct5fxel6a2" path="res://pipe.gd" id="3_tlwt5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqk2v"]
+atlas = ExtResource("2_fj7yv")
+region = Rect2(147, 152, 140, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlwt5"]
 atlas = ExtResource("2_fj7yv")
@@ -19,6 +23,11 @@ region = Rect2(84, 320, 28, 168)
 size = Vector2(26, 160)
 
 [node name="world" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(579.5, 324)
+scale = Vector2(8.33571, 6.19231)
+texture = SubResource("AtlasTexture_aqk2v")
 
 [node name="bird" type="Node2D" parent="."]
 position = Vector2(250, 0)
@@ -50,4 +59,5 @@ shape = SubResource("RectangleShape2D_tlwt5")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Pipe"]
 
 [connection signal="area_entered" from="bird/Area2D" to="bird" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Pipe/Area2D" to="Pipe" method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="Pipe/VisibleOnScreenNotifier2D" to="Pipe" method="_on_visible_on_screen_notifier_2d_screen_exited"]
