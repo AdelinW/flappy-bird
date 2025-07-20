@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl3vrcxbbkljl"]
+[gd_scene load_steps=4 format=3 uid="uid://cl3vrcxbbkljl"]
 
 [ext_resource type="Script" uid="uid://dp56e3520iohi" path="res://bird.gd" id="1_fj7yv"]
-[ext_resource type="Texture2D" uid="uid://cdvcrnxway2fv" path="res://icon.svg" id="2_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://jcy0pog7fenc" path="res://assets/latest.png" id="2_fj7yv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlwt5"]
+atlas = ExtResource("2_fj7yv")
+region = Rect2(112, 376, 24, 16)
 
 [node name="world" type="Node2D"]
 
 [node name="bird" type="Node2D" parent="."]
+position = Vector2(250, 0)
 script = ExtResource("1_fj7yv")
 
 [node name="Sprite2D" type="Sprite2D" parent="bird"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_tlwt5")
+scale = Vector2(2.5, 2.5)
+texture = SubResource("AtlasTexture_tlwt5")
