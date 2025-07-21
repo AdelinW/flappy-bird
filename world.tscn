@@ -90,6 +90,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_036b0")
 }
 
+[node name="ScoreLabel" type="Label" parent="bird"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.5
+offset_right = 148.5
+offset_bottom = 203.0
+grow_horizontal = 2
+text = "Points: 0"
+
 [node name="Pipe" type="Node2D" parent="."]
 position = Vector2(1302, 570)
 script = ExtResource("3_tlwt5")
@@ -204,10 +214,10 @@ shape = SubResource("RectangleShape2D_tlwt5")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Pipe6"]
 
 [connection signal="BirdHitPipe" from="bird" to="Pipe" method="_on_bird_bird_hit_pipe"]
-[connection signal="BirdHitPipe" from="bird" to="Pipe2" method="_on_bird_bird_hit_pipe"]
-[connection signal="BirdHitPipe" from="bird" to="Pipe3" method="_on_bird_bird_hit_pipe"]
-[connection signal="BirdHitPipe" from="bird" to="Pipe4" method="_on_bird_bird_hit_pipe"]
 [connection signal="BirdHitPipe" from="bird" to="Pipe5" method="_on_bird_bird_hit_pipe"]
+[connection signal="BirdHitPipe" from="bird" to="Pipe3" method="_on_bird_bird_hit_pipe"]
+[connection signal="BirdHitPipe" from="bird" to="Pipe2" method="_on_bird_bird_hit_pipe"]
+[connection signal="BirdHitPipe" from="bird" to="Pipe4" method="_on_bird_bird_hit_pipe"]
 [connection signal="BirdHitPipe" from="bird" to="Pipe6" method="_on_bird_bird_hit_pipe"]
 [connection signal="area_entered" from="bird/Area2D" to="bird" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Pipe/Area2D" to="Pipe" method="_on_area_2d_area_entered"]
